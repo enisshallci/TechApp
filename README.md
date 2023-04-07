@@ -1,2 +1,2 @@
 # TripMate
-Trave Web Application
+Travel Web Application

@@ -20,5 +20,5 @@ app.use((error, req, res, next) => {    //Error kur kemi
 
 
 app.listen(port, () => {        
-  console.log(`Applikacioni duke ndegjuar ne port 5000 ${port}`)  //console log per backend
+  console.log(`Applikacioni duke ndegjuar ne port ${port}`)  //console log per backend
 })

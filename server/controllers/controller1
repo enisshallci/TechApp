@@ -1,5 +1,5 @@
 const getPlaces = (req, res) => {
-    res.send("Vendet me te njohura....")
+    res.send("Pajisjet me te mira....")
 }
 
 module.exports = getPlaces

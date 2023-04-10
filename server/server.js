@@ -4,11 +4,16 @@ const port = 5000
 
 const apiRoutes = require("./routes/apiRoutes")
 
+//Konektimi me MongoDB
+const connectDB = require("./config/db")
+connectDB();
+app.use('/api', apiRoutes)
+
+
 app.get("/", (req, res) => {
   res.json({mesazhi: "Sistemet e Shperndara..."})
 })
 
-app.use('/api', apiRoutes)
 
 
 app.use((error, req, res, next) => {    //Error kur kemi

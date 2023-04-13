@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const Review = require("./reviewModel")
+const Review = require("./ReviewModel")
 
 const imageSchema = mongoose.Schema({
     path: {
@@ -51,8 +51,8 @@ const productSchema = mongoose.Schema({
 
 
 }, {
-    timestamps: true
-})
+    timestamps: true,
+});
 
 
 productSchema.index({name: "text", description: "text"}, {name: "TextIndex"})

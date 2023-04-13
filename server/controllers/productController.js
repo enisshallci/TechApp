@@ -4,4 +4,4 @@ const getProducts = (req, res) => {
     res.send("Produktet tona")
 }
 
-module.exports = getProducts
+module.exports = getProducts;

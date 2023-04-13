@@ -1,5 +1,0 @@
-const getPlaces = (req, res) => {
-    res.send("Pajisjet me te mira....")
-}
-
-module.exports = getPlaces

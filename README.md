@@ -4,3 +4,10 @@
 
 
 <h1>Technologies Used</h1>
+<ul>
+ <li>MongoDB</li>
+ <ExpressJS</li>
+ <li>ReactJS</li>
+ <NodeJS</li>
+ 
+ </ul>

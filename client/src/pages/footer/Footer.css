@@ -93,6 +93,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .Copyright>h1{
         font-size: 1.3rem;
         color: white;
     }

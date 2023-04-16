@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const [validated, setValidated] = useState(false);
   const [password] = useState("");
 
@@ -92,4 +92,3 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;

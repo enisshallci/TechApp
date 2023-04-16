@@ -46,8 +46,8 @@
     height: 100%;
     background-color: white;
 }
-.box {
-    width: 190px;
+.box11 {
+    width: 210px;
     height: auto;
     float: left;
     position: relative;
@@ -65,7 +65,7 @@
     color: #eeb441;
   }
   
-  .box:before {
+  .box11:before {
     position: absolute;
     content: '';
     left: 0;
@@ -78,7 +78,7 @@
     transform: translateX(100%);
   }
   
-  .box:after {
+  .box11:after {
     position: absolute;
     content: '';
     top: 0;
@@ -91,24 +91,25 @@
     transform: translateX(-100%);
   }
   
-  .box:hover {
+  .box11:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: #eeb441;
   }
   
-  .box:hover:before {
+  .box11:hover:before {
     border-color: #eeb441;
     height: 100%;
     transform: translateX(0);
     transition: .3s transform linear, .3s height linear .3s;
   }
   
-  .box:hover:after {
+  .box11:hover:after {
     border-color: #eeb441;
     height: 100%;
     transform: translateX(0);
     transition: .3s transform linear, .3s height linear .5s;
   }
-  .btn {
+  .btn23 {
     width: 30px;
     height: 50px;
     border-radius: 30px;

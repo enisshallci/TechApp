@@ -9,5 +9,7 @@
  <li>ExpressJS</li>
  <li>ReactJS</li>
  <li>NodeJS</li>
- 
+ <li>Mongoose</li>
+ <li>React-Bootstrap</li>
+ <li>Bootstrap</li>
  </ul>

@@ -6,9 +6,9 @@
 <h1>Technologies Used</h1>
 <ul>
  <li>MongoDB</li>
- <li>ExpressJS</li>
- <li>ReactJS</li>
- <li>NodeJS</li>
+ <li>Express.JS</li>
+ <li>React</li>
+ <li>Node.JS</li>
  <li>Mongoose</li>
  <li>React-Bootstrap</li>
  <li>Bootstrap</li>

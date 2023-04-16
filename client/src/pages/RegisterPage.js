@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
-const RegisterPage = () => {
+export const RegisterPage = () => {
   const [validated, setValidated] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -154,4 +154,3 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;

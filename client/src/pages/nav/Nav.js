@@ -16,6 +16,9 @@ export const Nav = ()=>{
     <li>
       <Link to="/contact">Contact</Link>
     </li>
+    <li>
+      <Link to="/register">Register</Link>
+    </li>
   </ul>
             </div>
         </div>

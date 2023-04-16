@@ -6,8 +6,8 @@
 <h1>Technologies Used</h1>
 <ul>
  <li>MongoDB</li>
- <liExpressJS</li>
+ <li>ExpressJS</li>
  <li>ReactJS</li>
- <liNodeJS</li>
+ <li>NodeJS</li>
  
  </ul>

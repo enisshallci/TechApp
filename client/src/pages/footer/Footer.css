@@ -25,12 +25,15 @@
     .Logo1{
         color: white;
         width: 100%;
-        height: 100%;
+        height: 30%;
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 30px;
         font-weight: 600;
+    }
+    .Logo1>img{
+        height: 100%;
     }
     .Menu1>ul{
         width: 100%;

@@ -37,6 +37,7 @@
 .Header1>h1{
     font-size: 5rem;
     font-weight: 700;
+    text-align: center;
 }
 .Header1>h2{
     text-align: center;

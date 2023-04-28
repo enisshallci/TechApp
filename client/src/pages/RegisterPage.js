@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Alert, Form, Button, Spinner} from "react-bootstrap";
 import { useState } from "react";
-
 import { Link } from "react-router-dom";
 
 export const RegisterPage = () => {
@@ -39,6 +38,16 @@ export const RegisterPage = () => {
   };
   
   return (
+    <>
+    <div  style={{
+        'width': '100%',
+        'height': '15vh',
+        'display': 'flex',
+        'justifyContent': 'space-around',
+        'alignItems': 'center',
+        'backgroundColor':'#285c7c',
+
+    }}></div>
     <Container>
       <Row className="mt-5 justify-content-md-center">
         <Col md={6}>
@@ -151,6 +160,7 @@ export const RegisterPage = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
 

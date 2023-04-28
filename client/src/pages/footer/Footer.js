@@ -3,12 +3,14 @@ import './Footer.css'
 import {BsFillTelephoneFill} from "react-icons/bs"
 import {TfiEmail} from 'react-icons/tfi'
 import {GoLocation} from 'react-icons/go'
+import logo from "../../content/logo.png"
+
 
 export const Footer =()=>{
     return(
         <div className='Footer'>
                 <div className='Logo1'>
-                    TechGalaxy
+                    <img src={logo}></img>
                 </div>
             <div className='MainPart'>
                

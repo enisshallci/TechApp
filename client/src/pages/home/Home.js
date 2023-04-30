@@ -5,9 +5,12 @@ import { Offers } from "./offers/Offers";
 import { StoreInfo } from "./storeInfo/StoreInfo";
 import { SubsnSocials } from "./subsnSocials/SubsnSocials";
 import { TopSellers } from "./topSellers/TopSellers";
+import { Nav } from "../nav/Nav";
+import { Footer } from "../footer/Footer";
 function Home() {
     return (
       <div className="Home">
+        <Nav></Nav>
         <div className="Header">
         <video style={{filter:"brightness(50%)",width:"100%",position:"fixed"}} src={video} autoPlay loop muted/>
         <div className="Header1">
@@ -23,6 +26,7 @@ function Home() {
         <Offers></Offers>
         <TopSellers></TopSellers>
         <SubsnSocials></SubsnSocials>
+        <Footer></Footer>
       </div>
     );
   }

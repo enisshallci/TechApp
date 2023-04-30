@@ -5,14 +5,14 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    lastname: {
+    lastName: {
         type: String,
         required: true
     },
     email: {
         type: String,
         required: true,
-        unique: true        //Nuk ka "Usera" me email të njejte. Imella eshte unike per secilin
+        unique: true        
     },
     phoneNumber: {
         type: String
@@ -39,10 +39,10 @@ const userSchema = mongoose.Schema({
     isAdmin: {
         type: Boolean,
         required: true,
-        default: false          //Nuk lejohet me qenë admin nje user i thjesht, per kete arsye by default eshte false
+        default: false          
     }
-}, {
-    timestamps: true            
+}, {    
+    timestamps: true             
 });
 
 const User = mongoose.model("User", userSchema);

@@ -6,15 +6,15 @@ const User = require("./UserModel")
 const orderSchema = mongoose.Schema({
 
     user: {
-        type: mongoose.Schema.Types.ObjectId,      
+        type: mongoose.Schema.Types.ObjectId,       
         required: true,
-        ref: User,      
+        ref: User,     
     },
     orderTotal: {
         itemsCount: {type: Number, required: true},
-        cartSutbotal: {type: Number, required: true}
+        cartSubtotal: {type: Number, required: true}
     },
-    cartItems: [       
+    cartItems: [        
         {    
             name: {
                 type: String, 
@@ -25,12 +25,13 @@ const orderSchema = mongoose.Schema({
                 required: true,
             },
             image: {
-                path: {        
+                path: {         
                     type: String,
                     required: true,
-                },
-                quantity: {        
-                    type: Number,           
+                }
+            },
+                quantity: {         
+                    type: Number,          
                     required: true,
                 },
                 count: {            
@@ -38,7 +39,6 @@ const orderSchema = mongoose.Schema({
                     required: true,
                 }
             }
-        }
     ],
     transactionResult: {    
         status: {
@@ -47,25 +47,26 @@ const orderSchema = mongoose.Schema({
         createTime: {
             type: String
         },
-        isPaid: {
-            type: Boolean,
-            required: true,
-            default: false,
-        },
-        paidAt: {
-            type: Date,
-        },
-        isDelivered: {
-            type: Boolean,
-            required: true,
-            default: false,     
-        },
-        deliveredAt: {
-            type: Date,
+        amount: {
+            type: Number
         }
-    }           
-
-
+    },
+    isPaid: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    paidAt: {
+        type: Date,
+    },
+    isDelivered: {
+        type: Boolean,
+        required: true,
+        default: false,     
+    },
+    deliveredAt: {
+        type: Date,
+    }          
 }, {
     timestamps: true,
 })

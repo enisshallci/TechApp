@@ -10,9 +10,9 @@ const connectDB = async() => {
             useUnifiedTopology: true,
         })
 
-        console.log("Konektimi me MongoDB ka arritur me sukses!");
+        console.log("Konektimi me \"MongoDB\" databazën ka arritur me sukses!");
     } catch(error) {
-        console.log("Konektimi me MongoDB nuk ka arritur");
+        console.log("Konektimi me \"MongoDB\" databazën nuk ka arritur");
         process.exit(1);
     }
 }

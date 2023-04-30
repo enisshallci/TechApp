@@ -8,16 +8,20 @@ const categorySchema = mongoose.Schema({
     },
     description: {
         type: String,
-        default: "Default Category Description"
+        default: "default category description"
     },
     image: {
         type: String,
-        //default ...
+        default: "images/tablets-category.png"
     },
-    attributes: [
-        {key: {type: String}, value: [{type: String}]}
+    attrs: [
+        {key: {type: String}, value: [{type: String}]}      
     ]
-});
+})
+
+
+categorySchema.index({descripti: 1})            
+
 
 const Category = mongoose.model("Category", categorySchema);
 module.exports = Category;

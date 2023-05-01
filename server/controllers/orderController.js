@@ -1,7 +1,5 @@
-const Order = require("../models/OrderModel")
-
 const getOrders = (req, res) => {
-    res.send("Porosite tona")
+    res.send("Porosite Tona")
 }
 
-module.exports = getOrders;
+module.exports = getOrders

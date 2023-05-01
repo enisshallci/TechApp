@@ -1,0 +1,10 @@
+const express = require("express")
+const router = express.Router()
+const {getCategories, newCategory, deleteCategory} = require("../controllers/categoryController")
+
+router.get("/", getCategories)
+router.post("/", newCategory)   //API endpoint handled by newCategory funksioni nga categoryController
+router.delete("/:category", deleteCategory)     //Kjo eshte dynamic parameter. Kjo metode sepse ne API endpoint kena me ja dergu emrin e categorys
+//qe ka mu fshi. 
+
+module.exports = router

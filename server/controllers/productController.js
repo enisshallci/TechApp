@@ -1,7 +1,7 @@
-const Product = require("../models/productModel")
+const Product = require("../models/ProductModel")
 
 const getProducts = (req, res) => {
-    res.send("Produktet tona")
+    res.send("Produktett tona")
 }
 
-module.exports = getProducts;
+module.exports = getProducts

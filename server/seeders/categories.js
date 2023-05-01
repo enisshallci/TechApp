@@ -1,7 +1,5 @@
 const categories = [            
-
-
-
+  
 {   
     name: "Computers",
     description:

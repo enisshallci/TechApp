@@ -10,6 +10,7 @@ import { Footer } from './pages/footer/Footer';
 import { Shop } from './pages/shop/Shop';
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
+import { MainPage } from "./pages/admin/mainPage/MainPage";
 
 
 
@@ -17,7 +18,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Nav></Nav>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -25,8 +25,8 @@ function App() {
           <Route path="/register" element={<RegisterPage />} /> 
           <Route path="/login" element={<LoginPage />} /> 
           <Route path="/shop" element={<Shop />} />
+        <Route path="/admin" element={<MainPage></MainPage>}></Route>
         </Routes>
-        <Footer></Footer>
       </div>
     </BrowserRouter>
   );

@@ -3,6 +3,8 @@ import { Container, Row, Col, Alert, Form, Button, Spinner} from "react-bootstra
 import { useState } from "react";
 
 import { Link } from "react-router-dom";
+import { Nav } from "./nav/Nav";
+import { Footer } from "./footer/Footer";
 
 
 export const LoginPage = () => {
@@ -21,6 +23,7 @@ export const LoginPage = () => {
 
   return (
     <>
+    <Nav></Nav>
       <div  style={{
         'width': '100%',
         'height': '15vh',
@@ -99,6 +102,7 @@ export const LoginPage = () => {
         </Col>
       </Row>
     </Container>
+    <Footer></Footer>
     </>
   );
 };

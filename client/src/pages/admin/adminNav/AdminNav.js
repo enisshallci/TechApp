@@ -17,6 +17,9 @@ export const AdminNav = ()=>{
     <li>
       <Link to="/users">Users</Link>
     </li>
+    <li>
+      <Link to="/chat">Chat</Link>
+    </li>
   
   </ul>
             </div>

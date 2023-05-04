@@ -6,6 +6,7 @@ import { useState } from 'react';
 import {GoChevronUp} from 'react-icons/go'
 import logo from "../../content/logo.png"
 
+
 export const Nav = ()=>{
   const [displayy, setDisplay] = useState('none');
   const DisplayFlexHandler =()=>{
@@ -28,6 +29,9 @@ const DisplayNoneHandler =()=>{
     <li>
       <Link to="/contact">Contact</Link>
     </li>
+    <li>
+      <Link to="/shop">Shop</Link>
+    </li>
     <li className='dropdown' onMouseEnter={DisplayFlexHandler}>
       <BsPersonCircle/><BiChevronDown/>
       <ul onClick={DisplayNoneHandler} style={{display:displayy,color:"white"}}>
@@ -36,6 +40,7 @@ const DisplayNoneHandler =()=>{
         <li><Link to={"/login"}> Login </Link></li>
       </ul>
     </li>
+   
   </ul>
             </div>
         </div>

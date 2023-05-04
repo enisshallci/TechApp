@@ -2,11 +2,15 @@ import React from "react";
 import { Container, Row, Col, Alert, Form, Button, Spinner} from "react-bootstrap";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Nav } from "./nav/Nav";
+import { Footer } from "./footer/Footer";
 
 export const RegisterPage = () => {
   const [validated, setValidated] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [userType,setUserType]=useState("");
+  const [secretKey,setSecretKey]=useState("");
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -39,6 +43,7 @@ export const RegisterPage = () => {
   
   return (
     <>
+    <Nav></Nav>
     <div  style={{
         'width': '100%',
         'height': '15vh',
@@ -48,8 +53,21 @@ export const RegisterPage = () => {
         'backgroundColor':'#285c7c',
 
     }}></div>
+    <div>
+      Register as
+          <input
+          type="radio" name="UserType" value="User" onChange={(e)=>setUserType(e.target.value)}></input>User
+           <input
+          type="radio" name="UserType" value="Admin" onChange={(e)=>setUserType(e.target.value)}></input>Admin
+          </div>
+          {userType == "Admin"?<div>
+            <label>Secret Key</label>
+            <input type="text" placeholder="Secret Key" onChange={(e) =>setSecretKey(e.target.value)}></input>
+            </div>:null}
+          
     <Container>
       <Row className="mt-5 justify-content-md-center">
+        
         <Col md={6}>
           <h1>Register</h1>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -160,6 +178,7 @@ export const RegisterPage = () => {
         </Col>
       </Row>
     </Container>
+    <Footer></Footer>
     </>
   );
 };

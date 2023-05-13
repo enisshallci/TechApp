@@ -1,9 +1,19 @@
-const express = require("express")
+const express = require('express')
 const router = express.Router()
-const getProducts = require("../controllers/productController")
+const {getProducts, getProductById, getBestsellers, adminGetProducts, adminDeleteProduct, adminCreateProduct, adminUpdateProduct, adminUpload} = require("../controllers/productController")
 
+router.get("/category/:categoryName/search/:searchQuery", getProducts)
+router.get("/category/:categoryName", getProducts)
+router.get("/search/:searchQuery", getProducts)
+router.get("/", getProducts)
+router.get("/bestsellers", getBestsellers)
+router.get("/get-one/:id", getProductById)
 
-router.get("/", getProducts)        //  / sepse ska ma ma anej qka me shtu, bohet handle nga getProducts method nga controlleri, dhe controlleri
-                                    // i krijon database queries.
+// admin routes:
+router.get("/admin", adminGetProducts)
+router.delete("/admin/:id", adminDeleteProduct)
+router.put("/admin/:id", adminUpdateProduct)
+router.post("/admin/upload", adminUpload)
+router.post("/admin", adminCreateProduct)
 
-module.exports = getProducts
+module.exports = router

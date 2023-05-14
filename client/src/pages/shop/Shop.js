@@ -293,12 +293,12 @@ export const Shop = () => {
 
       <div className="products">
         {sortedProducts.map((product) => (
-          <div className="product" onClick={() => handleClick(product)}>
-            <div>
+          <div className="product" >
+            <div onClick={() => handleClick(product)}>
               <h3 className="texth3">{product.item}</h3>
               <h4 className="texth4">&euro;{product.price.toFixed(2)}</h4>
             </div>
-            <img src={product.img} alt={product.item}></img>
+            <img src={product.img} alt={product.item} onClick={() => handleClick(product)}></img>
             <button className="buttons" onClick={() => addToCart(product)}>
               Add to cart
             </button>

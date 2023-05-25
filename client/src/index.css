@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  line-height: 26px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 6px -6px grey;
+  --webkit-box-shadow: 0 8px 6px -6px grey;
+  border-bottom: solid gray !important;
+}
+.nav-link {
+  font-weight: 300 !important;
+}
+.active {
+  border-bottom: 2px solid black;
+}
+
+
+/* ======== footer =========*/
+.footer {
+  color: white;
+  padding: 25px;
+  background: var(--blue); /* fallback for old browsers */
+  /* background: -webkit-linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); Chrome 10-25, Safari 5.1-6 */
+  /* background: linear-gradient(to right, #434343, #000000); */
+}
+.footer a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
+
+.footer a:hover {
+  color: var(--yellow);
+  border-bottom: 1px solid #ffefba;
+}

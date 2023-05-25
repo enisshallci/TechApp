@@ -1,0 +1,20 @@
+:root {
+    --blue: #285c7c;
+    --yellow: #eeb441;
+  }
+.logo{
+    width: 200px;
+}
+.Nav{
+    background-color: var(--blue);
+}
+.Nav a{
+    color: white;
+}
+.Nav .drop-header a {
+    color: black;
+}
+.Nav a:active{
+    color: var(--yellow);
+    
+}

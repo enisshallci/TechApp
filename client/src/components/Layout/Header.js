@@ -5,6 +5,7 @@ import logo from "../content/logo.png";
 import { toast } from "react-hot-toast";
 import "../../style/Header.css";
 
+
 const Header = () => {
   const [auth, setAuth] = useAuth();
 
@@ -72,6 +73,15 @@ const Header = () => {
                       Logout
                       </NavLink>
                       </li>
+
+                      className="nav-link"
+                      to="/login"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </NavLink>
+                   </li>
+
                 </>
               )}
               <li className="nav-item">

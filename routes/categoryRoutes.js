@@ -6,6 +6,7 @@ import {
   getCategoriesController,
   singleCategoryController,
   deleteCategoryController,
+
 } from "../controllers/categoryController.js";
 
 const router = express.Router();
@@ -22,7 +23,9 @@ router.post(
 router.put("/update-category/:id", requireSignIn, updateCategoryController);
 
 //get all categories
+
 router.get("/get-category", getCategoriesController);
+
 
 // get single category
 router.get("/single-category/:slug", singleCategoryController);

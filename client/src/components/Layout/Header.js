@@ -5,7 +5,6 @@ import logo from "../content/logo.png";
 import { toast } from "react-hot-toast";
 import "../../style/Header.css";
 
-
 const Header = () => {
   const [auth, setAuth] = useAuth();
 
@@ -64,24 +63,38 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item dropdown">
                     <NavLink
-                      onClick={handleLogout}
-                      to="/login"
-                      className="nav-link"
-                      >
-                      Logout
-                      </NavLink>
-                      </li>
-
-                      className="nav-link"
-                      to="/login"
-                      onClick={handleLogout}
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      style={{ border: "none" }}
                     >
-                      Logout
+                      {auth?.user?.name}
                     </NavLink>
-                   </li>
-
+                    <ul className="dropdown-menu">
+                      <li>
+                        <NavLink
+                          to={`/dashboard/${
+                            auth?.user?.role === 1 ? "admin" : "user"
+                          }`}
+                          className="dropdown-item"
+                        >
+                          Dashboard
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          onClick={handleLogout}
+                          to="/login"
+                          className="dropdown-item"
+                        >
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
                 </>
               )}
               <li className="nav-item">
@@ -89,7 +102,6 @@ const Header = () => {
                   Cart (0)
                 </NavLink>
               </li>
-             
             </ul>
           </div>
         </div>

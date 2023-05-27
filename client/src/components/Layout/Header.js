@@ -53,24 +53,25 @@ const Header = () => {
                   <li className="nav-item">
                     <NavLink to="/register" className="nav-link" href="#">
                       Register
-                      </NavLink>
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
                     <NavLink to="/login" className="nav-link" href="#">
                       Login
                     </NavLink>
-
                   </li>
-              </>
+                </>
               ) : (
                 <>
                   <li className="nav-item">
                     <NavLink
-                      className="nav-link"
-                      to="/login"
                       onClick={handleLogout}
-                    >
+                      to="/login"
+                      className="nav-link"
+                      >
                       Logout
-                    </NavLink>
-                   </li>
+                      </NavLink>
+                      </li>
                 </>
               )}
               <li className="nav-item">

@@ -18,6 +18,7 @@ const Header = () => {
     toast.success("Logout successfully");
   };
 
+  const isUser = auth?.user?.role === 0;
   return (
     <>
       <nav className="Nav navbar navbar-expand-lg">
@@ -48,15 +49,15 @@ const Header = () => {
                   Category
                 </NavLink>
               </li>
-              {!auth.user ? (
+              {!auth?.user ? (
                 <>
                   <li className="nav-item">
-                    <NavLink to="/register" className="nav-link" href="#">
+                    <NavLink to="/register" className="nav-link">
                       Register
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="/login" className="nav-link" href="#">
+                    <NavLink to="/login" className="nav-link">
                       Login
                     </NavLink>
                   </li>
@@ -73,7 +74,7 @@ const Header = () => {
                     >
                       {auth?.user?.name}
                     </NavLink>
-                    <ul className="dropdown-menu">
+                    <ul className="dropdown-menu drop-header">
                       <li>
                         <NavLink
                           to={`/dashboard/${

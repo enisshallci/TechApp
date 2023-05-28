@@ -1,108 +1,127 @@
-import { useState } from "react";
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import Layout from "../../components/Layout/Layout";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"; 
 import toast from 'react-hot-toast'
-import "../../style/AuthStyles.css";
+import "../../styles/AuthStyles.css";
 
-const Register = ()=>{
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [phone, setPhone] = useState("")
-    const [address, setAddress] = useState("")
-    const [answer, setAnswer] = useState("")
-    const navigate = useNavigate()
-    
-    const handleSubmit = async (e)=>{
-        e.preventDefault()
-        try{
-            const res = await axios.post("/api/v1/auth/register", {
-                name,
-                email,
-                password,
-                phone,
-                address,
-                answer,
-              });
-            if(res && res.data.success){
-                toast.success(res.data.message, 'Success');
-                navigate('/login');
-            }else{
-                toast.error(res.data.message)
-            }
-        }catch(error){
-            console.log(error)
-            toast.error('Something went wrong');
-        }
-    };
-    // console.log(process.env.REACT_APP_API)
-    
-    return(
-        <Layout title="Register - GalaxyTech">
-            <div className="form-container">
-                <h1>Register Page</h1>
-                <form onSubmit={handleSubmit}>
-      <div className="mb-3">
-        <input type="text" 
-        value={name} 
-        onChange={(e)=>setName(e.target.value)}
-        className="form-control" 
-        required
-        placeholder="Enter Your Name" 
-         />
-     </div>
-     <div className="mb-3">
-        
-        <input type="email" value={email} 
-        onChange={(e)=>setEmail(e.target.value)}
-        className="form-control"  
-        required
-        placeholder="Enter Your Email" />
-     </div>
-      <div className="mb-3">
-        <input type="password"
-         value={password} 
-         className="form-control" 
-         id="exampleInputPassword1" 
-        onChange={(e)=>setPassword(e.target.value)} 
-         required
-         placeholder="Enter Your Password" />
-      </div>
-      <div className="mb-3">
-        <input type="text" 
-        value={phone} 
-        className="form-control"  
-        onChange={(e)=>setPhone(e.target.value)}
-        required
-        placeholder="Enter Your Phone Number"
-          />
-     </div>
-     <div className="mb-3">
-        <input type="text" 
-        value={address} 
-        className="form-control" 
-        onChange={(e)=>setAddress(e.target.value)}
-        required 
-        placeholder="Enter Your Address" 
-          />
-     </div>
-     <div className="mb-3">
-        <input type="text" 
-        value={answer} 
-        className="form-control" 
-        onChange={(e)=>setAnswer(e.target.value)}
-        required 
-        placeholder="Notes" 
-          />
-     </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
-      <NotificationContainer />
-    </form>
+const Register = () => {
+  const navigate = useNavigate();
+
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
+    address: "",
+    answer: ""
+  };
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string().required("Password is required"),
+    phone: Yup.string().required("Phone number is required"),
+    address: Yup.string().required("Address is required"),
+    answer: Yup.string().required("Notes are required")
+  });
+
+  const handleSubmit = async (values) => {
+    try {
+      const res = await axios.post("/api/v1/auth/register", values);
+      if (res && res.data.success) {
+        toast.success(res.data.message, 'Success');
+        navigate('/login');
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Something went wrong');
+    }
+  };
+
+  return (
+    <Layout title="Register - GalaxyTech">
+      <div className="form-container">
+        <h1>Register Page</h1>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <div className="mb-3">
+              <Field
+                type="text"
+                name="name"
+                className="form-control"
+                placeholder="Enter Your Name"
+                required
+              />
+              <ErrorMessage name="name" component="div" className="error-message" />
             </div>
-        </Layout>
-    )
+            <div className="mb-3">
+              <Field
+                type="email"
+                name="email"
+                className="form-control"
+                placeholder="Enter Your Email"
+                required
+              />
+              <ErrorMessage name="email" component="div" className="error-message" />
+            </div>
+            <div className="mb-3">
+              <Field
+                type="password"
+                name="password"
+                className="form-control"
+                placeholder="Enter Your Password"
+                required
+              />
+              <ErrorMessage name="password" component="div" className="error-message" />
+            </div>
+            <div className="mb-3">
+              <Field
+                type="text"
+                name="phone"
+                className="form-control"
+                placeholder="Enter Your Phone Number"
+                required
+              />
+              <ErrorMessage name="phone" component="div" className="error-message" />
+            </div>
+            <div className="mb-3">
+              <Field
+                type="text"
+                name="address"
+                className="form-control"
+                placeholder="Enter Your Address"
+                required
+              />
+              <ErrorMessage name="address" component="div" className="error-message" />
+            </div>
+            <div className="mb-3">
+              <Field
+                type="text"
+                name="answer"
+                className="form-control"
+                placeholder="Notes"
+                required
+              />
+              <ErrorMessage name="answer" component="div" className="error-message" />
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </Form>
+        </Formik>
+        <NotificationContainer />
+      </div>
+    </Layout>
+  );
 }
+
 export default Register;

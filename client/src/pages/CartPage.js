@@ -180,7 +180,6 @@ const CartPage = () => {
                 ) : (
                   <>
                     <DropIn
-                    {/*<DropIn
                       options={{
                         authorization: clientToken,
                         paypal: {
@@ -193,7 +192,7 @@ const CartPage = () => {
                     <button
                       className="btn btn-primary"
                       onClick={handlePayment}
-                    />*/}
+                    />
 
                     <button
                       className="btn btn-primary"

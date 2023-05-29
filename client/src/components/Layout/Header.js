@@ -8,12 +8,12 @@ import SearchInput from "../Form/SearchInput";
 import { useCart } from "../../context/cart";
 import { Avatar, Badge } from "antd";
 import useCategory from "../../hooks/useCategory";
-import { useWishlist } from "../../context/wishlist";
+//import { useWishlist } from "../../context/wishlist";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
-  const [wishlist] = useWishlist();
+  // const [wishlist] = useWishlist();
   const categories = useCategory();
 
   const handleLogout = () => {

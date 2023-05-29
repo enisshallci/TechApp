@@ -11,6 +11,7 @@ import { AiOutlineReload } from "react-icons/ai";
 import "../style/Homepage.css";
 import { useAuth } from "../context/auth";
 import "@fortawesome/fontawesome-free/css/all.css";
+import wishlistImg from "../components/content/love.png";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [auth, setAuth] = useAuth();
+
 
   //get all cat
   const getAllCategory = async () => {
@@ -111,6 +113,19 @@ const HomePage = () => {
       console.log(error);
     }
   };
+  const handleAddToWishlist = async (productId) => {
+    try {
+      const response = await axios.post(
+        '/api/v1/wishlist',
+        { products: [productId] }
+      );
+      toast.success("Product Successfully added to Wishlist");
+
+      console.log(response.data);
+    } catch (error) {
+      console.log('Failed to add product to wishlist', error);
+    }
+  };
   return (
     <Layout title={"All Products - Best offers "}>
       <div className="container-fluid row mt-3 home-page">
@@ -151,11 +166,40 @@ const HomePage = () => {
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
-                <img
-                  src={`/api/v1/products/product-photo/${p._id}`}
-                  className="card-img-top"
-                  alt={p.name}
-                />
+                <div
+                  style={{
+                    position: "relative",
+                  }}
+                >
+                  <div
+                    style={{
+                      background: "white",
+                      width: "35px",
+                      height: "35px",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      zIndex: 1,
+                      borderRadius: "50%",
+                    }}
+                  >
+                    <img
+                      src={wishlistImg}
+                      style={{
+                        width: "30px",
+                        height: "auto",
+                      }}
+                      onClick={() => handleAddToWishlist(p._id)}
+                      alt="Wishlist Image"
+                    />
+                  </div>
+                  <img
+                    src={`/api/v1/products/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                  />
+                </div>
+
                 <div className="card-body">
                   <div className="card-name-price">
                     <h5 className="card-title">{p.name}</h5>

@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import UserMenu from "../../components/Layout/UserMenu";
 import Layout from "./../../components/Layout/Layout";
+import axios from "axios";
+import { useAuth } from "../../context/auth";
+import moment from "moment";
 
 const Orders = () => {
+  const [orders, setOrders] = useState([]);
+  const [auth, setAuth] = useAuth();
+  const getOrders = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/auth/orders");
+      setOrders(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (auth?.token) getOrders();
+  }, [auth?.token]);
   return (
     <Layout title={"Your Orders"}>
-      <div className="container-flui p-3 m-3 ">
+      <div className="container-flui p-3 m-3 dashboard">
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
           </div>
           <div className="col-md-9">
-<<<<<<< Updated upstream
-            <h1>All Orders</h1>
-=======
             <h1 className="text-center">All Orders</h1>
             {orders?.map((o, i) => {
               return (
@@ -63,7 +77,6 @@ const Orders = () => {
                 </div>
               );
             })}
->>>>>>> Stashed changes
           </div>
         </div>
       </div>

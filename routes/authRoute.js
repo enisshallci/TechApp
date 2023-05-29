@@ -5,12 +5,9 @@ import {
   testController,
   forgotPasswordController,
   updateProfileController,
-<<<<<<< Updated upstream
-=======
   getOrdersController,
   getAllOrdersController,
   orderStatusController,
->>>>>>> Stashed changes
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -48,8 +45,7 @@ router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
 //update profile
 router.put("/profile", requireSignIn, updateProfileController);
 
-<<<<<<< Updated upstream
-=======
+
 //orders
 router.get("/orders", requireSignIn, getOrdersController);
 
@@ -64,5 +60,5 @@ router.put(
   orderStatusController
 );
 
->>>>>>> Stashed changes
+
 export default router;

@@ -1,6 +1,6 @@
 import { comparePassword, hashPassword } from "../helpers/authHelper.js";
 import userModel from "../models/userModel.js";
-
+import orderModel from "../models/orderModel.js";
 import JWT from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
@@ -158,7 +158,7 @@ export const testController = (req, res) => {
   res.send("Protected Route");
 };
 
-//update prfole
+//update profile
 export const updateProfileController = async (req, res) => {
   try {
     const { name, email, password, address, phone } = req.body;
@@ -192,8 +192,7 @@ export const updateProfileController = async (req, res) => {
     });
   }
 };
-<<<<<<< Updated upstream
-=======
+
 
 //orders
 export const getOrdersController = async (req, res) => {
@@ -252,4 +251,4 @@ export const orderStatusController = async (req, res) => {
     });
   }
 };
->>>>>>> Stashed changes
+

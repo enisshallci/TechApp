@@ -2,21 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
-import { useCart } from "../context/cart";
-import { useWishlist } from "../context/wishlist";
+import { useCart } from "../context/cart.js";
+//import { useWishlist } from "../context/wishlist";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../style/Homepage.css";
 import { useAuth } from "../context/auth";
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import "@fortawesome/fontawesome-free/css/all.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
-  const [wishlist, setWishlist] = useWishlist();
+  //const [wishlist, setWishlist] = useWishlist();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -177,11 +176,14 @@ const HomePage = () => {
                     { <span>  ({p.numberOfReviews} reviews)</span> }
                   </div> */}
 
-
                   <div className="card-name-price">
                     <button
                       className="btn btn-info ms-1"
-                      onClick={() => navigate(`/product/${p.slug}`, { state: { productId: p._id } })}
+                      onClick={() =>
+                        navigate(`/product/${p.slug}`, {
+                          state: { productId: p._id },
+                        })
+                      }
                     >
                       More Details
                     </button>

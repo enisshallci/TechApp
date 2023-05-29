@@ -10,7 +10,7 @@
 }
 .product{
     width: 400px;
-    height: 500px;
+    min-height: 500px;
     border:1px solid #285c7c;
     display: flex;
     flex-direction: column;
@@ -35,6 +35,7 @@
 }
 .product>img{
     width: 55%;
+    margin-top: 10px;
 }
 .buttons{
     margin-top: 10px;

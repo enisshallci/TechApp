@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import "../../style/products.css";
 import { Link } from "react-router-dom";
+import ProductReviews from "./ProductReviews";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -40,6 +41,7 @@ const Products = () => {
                    <div className="product__info">
                     <h3 className="texth3">{product.name}</h3>
                     <p className="texth4">{product.description}</p>
+                    Ratings: <ProductReviews productId={product._id}></ProductReviews>
                   </div>
                 </div>
               </Link>

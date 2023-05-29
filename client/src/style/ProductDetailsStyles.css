@@ -48,3 +48,19 @@
 .similar-products .card-img-top {
   height: 300px !important;
 }
+.card-img-top{
+  width: 100%;
+  height: auto;
+}
+
+.col-md-6{
+  display: flex;
+  justify-content: center;
+}
+.imageee{
+  width: 50%;
+}
+.butoni{
+  display: flex;
+  flex-direction: column;
+}

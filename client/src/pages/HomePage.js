@@ -12,6 +12,8 @@ import "../style/Homepage.css";
 import { useAuth } from "../context/auth";
 import "@fortawesome/fontawesome-free/css/all.css";
 import wishlistImg from "../components/content/love.png";
+import ProductReviews from "./Admin/ProductReviews";
+
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -219,6 +221,7 @@ const HomePage = () => {
                     </div>
                     { <span>  ({p.numberOfReviews} reviews)</span> }
                   </div> */}
+                  <ProductReviews productId={p._id}></ProductReviews>
 
                   <div className="card-name-price">
                     <button

@@ -16,9 +16,16 @@ import {
   braintreeTokenController,
   brainTreePaymentController,
 } from "../controllers/productController.js";
+import { createProductReview, countProductReview,getReviewsController } from "../controllers/productController.js";
 import formidable from "express-formidable";
 
 const router = express.Router();
+
+router.post('/review',requireSignIn,createProductReview);
+
+router.get('/review/:productId/count', requireSignIn, countProductReview);
+
+router.get('/get-reviews', getReviewsController);
 
 //routes
 router.post(

@@ -10,6 +10,11 @@
     "antd": "^5.5.1",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
+<<<<<<< Updated upstream
+=======
+    "braintree-web-drop-in-react": "^1.2.1",
+    "formik": "^2.4.0",
+>>>>>>> Stashed changes
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",

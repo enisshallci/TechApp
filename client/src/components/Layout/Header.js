@@ -6,9 +6,18 @@ import { toast } from "react-hot-toast";
 import "../../style/Header.css";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
+<<<<<<< Updated upstream
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+=======
+//import { useWishlist } from "../../context/wishlist";
+
+const Header = () => {
+  const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
+  // const [wishlist] = useWishlist();
+>>>>>>> Stashed changes
   const categories = useCategory();
   const handleLogout = () => {
     setAuth({

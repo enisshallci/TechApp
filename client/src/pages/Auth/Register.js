@@ -2,12 +2,15 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Layout from "../../components/Layout/Layout";
-import { NotificationContainer, NotificationManager } from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
-import axios from 'axios'
-import { useNavigate } from "react-router-dom"; 
-import toast from 'react-hot-toast'
-import "../../styles/AuthStyles.css";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import "../../style/AuthStyles.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -18,7 +21,7 @@ const Register = () => {
     password: "",
     phone: "",
     address: "",
-    answer: ""
+    answer: "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -27,21 +30,21 @@ const Register = () => {
     password: Yup.string().required("Password is required"),
     phone: Yup.string().required("Phone number is required"),
     address: Yup.string().required("Address is required"),
-    answer: Yup.string().required("Notes are required")
+    answer: Yup.string().required("Notes are required"),
   });
 
   const handleSubmit = async (values) => {
     try {
       const res = await axios.post("/api/v1/auth/register", values);
       if (res && res.data.success) {
-        toast.success(res.data.message, 'Success');
-        navigate('/login');
+        toast.success(res.data.message, "Success");
+        navigate("/login");
       } else {
         toast.error(res.data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error('Something went wrong');
+      toast.error("Something went wrong");
     }
   };
 
@@ -63,7 +66,11 @@ const Register = () => {
                 placeholder="Enter Your Name"
                 required
               />
-              <ErrorMessage name="name" component="div" className="error-message" />
+              <ErrorMessage
+                name="name"
+                component="div"
+                className="error-message"
+              />
             </div>
             <div className="mb-3">
               <Field
@@ -73,7 +80,11 @@ const Register = () => {
                 placeholder="Enter Your Email"
                 required
               />
-              <ErrorMessage name="email" component="div" className="error-message" />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="error-message"
+              />
             </div>
             <div className="mb-3">
               <Field
@@ -83,7 +94,11 @@ const Register = () => {
                 placeholder="Enter Your Password"
                 required
               />
-              <ErrorMessage name="password" component="div" className="error-message" />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="error-message"
+              />
             </div>
             <div className="mb-3">
               <Field
@@ -93,7 +108,11 @@ const Register = () => {
                 placeholder="Enter Your Phone Number"
                 required
               />
-              <ErrorMessage name="phone" component="div" className="error-message" />
+              <ErrorMessage
+                name="phone"
+                component="div"
+                className="error-message"
+              />
             </div>
             <div className="mb-3">
               <Field
@@ -103,7 +122,11 @@ const Register = () => {
                 placeholder="Enter Your Address"
                 required
               />
-              <ErrorMessage name="address" component="div" className="error-message" />
+              <ErrorMessage
+                name="address"
+                component="div"
+                className="error-message"
+              />
             </div>
             <div className="mb-3">
               <Field
@@ -113,15 +136,21 @@ const Register = () => {
                 placeholder="Notes"
                 required
               />
-              <ErrorMessage name="answer" component="div" className="error-message" />
+              <ErrorMessage
+                name="answer"
+                component="div"
+                className="error-message"
+              />
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
           </Form>
         </Formik>
         <NotificationContainer />
       </div>
     </Layout>
   );
-}
+};
 
 export default Register;

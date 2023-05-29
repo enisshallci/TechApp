@@ -1,24 +1,34 @@
 import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const CategoryForm = ({ handleSubmit, value, setValue }) => {
+  const validationSchema = Yup.object().shape({
+    category: Yup.string().required("Category is required"),
+  });
+
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <Formik
+      initialValues={{ category: value }}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      <Form>
         <div className="mb-3">
-          <input
+          <Field
             type="text"
+            name="category"
             className="form-control"
             placeholder="Enter new category"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
           />
+          <ErrorMessage name="category" component="div" className="error" />
         </div>
 
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
-      </form>
-    </>
+      </Form>
+    </Formik>
   );
 };
 

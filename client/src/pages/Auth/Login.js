@@ -1,26 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
-import "../../style/AuthStyles.css";
+import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [auth, setAuth] = useAuth();
 
+const Login = () => {
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // form function
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string().required("Password is required"),
+  });
+
+  const handleSubmit = async (values) => {
     try {
-      const res = await axios.post("/api/v1/auth/login", {
-        email,
-        password,
-      });
+      const res = await axios.post("/api/v1/auth/login", values);
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
         setAuth({
@@ -38,51 +43,58 @@ const Login = () => {
       toast.error("Something went wrong");
     }
   };
+
   return (
     <Layout title="Register - Ecommer App">
       <div className="form-container " style={{ minHeight: "90vh" }}>
-        <form onSubmit={handleSubmit}>
-          <h4 className="title">LOGIN FORM</h4>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <h4 className="title">LOGIN FORM</h4>
 
-          <div className="mb-3">
-            <input
-              type="email"
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter Your Email "
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Enter Your Password"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <button
-              type="button"
-              className="btn forgot-btn"
-              onClick={() => {
-                navigate("/forgot-password");
-              }}
-            >
-              Forgot Password
+            <div className="mb-3">
+              <Field
+                type="email"
+                autoFocus
+                name="email"
+                className="form-control"
+                id="exampleInputEmail1"
+                placeholder="Enter Your Email"
+                required
+              />
+              <ErrorMessage name="email" component="div" className="error-message" />
+            </div>
+            <div className="mb-3">
+              <Field
+                type="password"
+                name="password"
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Enter Your Password"
+                required
+              />
+              <ErrorMessage name="password" component="div" className="error-message" />
+            </div>
+            <div className="mb-3">
+              <button
+                type="button"
+                className="btn forgot-btn"
+                onClick={() => {
+                  navigate("/forgot-password");
+                }}
+              >
+                Forgot Password
+              </button>
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              LOGIN
             </button>
-          </div>
-
-          <button type="submit" className="btn btn-primary">
-            LOGIN
-          </button>
-        </form>
+          </Form>
+        </Formik>
       </div>
     </Layout>
   );

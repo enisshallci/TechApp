@@ -1,6 +1,7 @@
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
 import orderModel from "../models/orderModel.js";
+import reviewModel from '../models/reviewModel.js';
 import fs from "fs";
 import slugify from "slugify";
 import braintree from "braintree";
@@ -15,6 +16,76 @@ var gateway = new braintree.BraintreeGateway({
   publicKey: process.env.BRAINTREE_PUBLIC_KEY,
   privateKey: process.env.BRAINTREE_PRIVATE_KEY,
 });
+
+
+export const createProductReview = async (req, res) => {
+
+  try {
+    const { rating, comment, product } = req.body;
+    switch (true) {
+      case !rating:
+        return res.status(500).send({ error: "Rating is Required" });
+      case !comment:
+        return res.status(500).send({ error: "Comment is Required" });
+      case !product:
+        return res.status(500).send({ error: "Category is Required" });
+    }
+    
+
+    const reviews = new reviewModel({
+      ...req.body,
+    });
+
+    await reviews.save();
+
+    res.status(201).send({
+      success: true,
+      message: "Review Created Successfully",
+      reviews,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error in reviewing product",
+    });
+  }
+};
+
+export const countProductReview = async (req, res) => {
+  try {
+    const { productId } = req.params;
+
+    const count = await reviewModel.countDocuments({ product: productId });
+
+    res.json({ success: true, count });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Something went wrong" });
+  }
+}
+
+export const getReviewsController = async (req, res) => {
+  try {
+    const reviews = await reviewModel.find({})
+  
+
+    res.status(200).send({
+      success: true,
+      countTotal: reviews.length,
+      message: "All Reviews",
+      reviews,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in getting reviews",
+      error: error.message,
+    });
+  }
+};
 
 export const createProductController = async (req, res) => {
   try {

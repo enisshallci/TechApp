@@ -1,24 +1,31 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
+import toast from "react-hot-toast";
 import logo from "../content/logo.png";
-import { toast } from "react-hot-toast";
 import "../../style/Header.css";
 import SearchInput from "../Form/SearchInput";
+import { useCart } from "../../context/cart";
+import { Avatar, Badge } from "antd";
 import useCategory from "../../hooks/useCategory";
-<<<<<<< Updated upstream
 
-const Header = () => {
-  const [auth, setAuth] = useAuth();
-=======
+
 //import { useWishlist } from "../../context/wishlist";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   // const [wishlist] = useWishlist();
->>>>>>> Stashed changes
+
+import { useWishlist } from "../../context/wishlist";
+
+const Header = () => {
+  const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
+  const [wishlist] = useWishlist();
+
   const categories = useCategory();
+
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -28,7 +35,6 @@ const Header = () => {
     localStorage.removeItem("auth");
     toast.success("Logout successfully");
   };
-
   const isUser = auth?.user?.role === 0;
   return (
     <>
@@ -82,7 +88,6 @@ const Header = () => {
                   ))}
                 </ul>
               </li>
-
               {!auth?.user ? (
                 <>
                   <li className="nav-item">
@@ -132,11 +137,15 @@ const Header = () => {
                   </li>
                 </>
               )}
-              <li className="nav-item">
-                <NavLink to="/cart" className="nav-link" href="#">
-                  Cart (0)
-                </NavLink>
-              </li>
+              {isUser && (
+                <li className="nav-item">
+                  <Badge count={cart?.length} showZero>
+                    <NavLink to="/cart" className="nav-link" href="#">
+                      Cart
+                    </NavLink>
+                  </Badge>
+                </li>
+              )}
             </ul>
           </div>
         </div>

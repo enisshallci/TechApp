@@ -5,7 +5,7 @@ import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
-import "../../styles/AuthStyles.css";
+import "../../style/AuthStyles.css";
 import { useAuth } from "../../context/auth";
 
 const Login = () => {
@@ -65,7 +65,11 @@ const Login = () => {
                 placeholder="Enter Your Email"
                 required
               />
-              <ErrorMessage name="email" component="div" className="error-message" />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="error-message"
+              />
             </div>
             <div className="mb-3">
               <Field
@@ -76,7 +80,11 @@ const Login = () => {
                 placeholder="Enter Your Password"
                 required
               />
-              <ErrorMessage name="password" component="div" className="error-message" />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="error-message"
+              />
             </div>
             <div className="mb-3">
               <button

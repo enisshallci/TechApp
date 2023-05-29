@@ -3,12 +3,19 @@ import Layout from "./../components/Layout/Layout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../style/ProductDetailsStyles.css";
+import toast from "react-hot-toast";
+import ReviewForm from "./ReviewForm.js";
+import ProductReviews from "./Admin/ProductReviews";
 
 const ProductDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [show, setShow] = useState(false);
+  const [id, setId] = useState("");
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
 
   //inital details
   useEffect(() => {
@@ -37,6 +44,53 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
+
+  const [reviewCount, setReviewCount] = useState(0);
+  console.log(product._id);
+
+  useEffect(() => {
+    const getCount = async () => {
+      try {
+        const response = await axios.get(
+          `/api/v1/products/review/${product._id}/count`
+        );
+        const { success, count } = response.data;
+
+        if (success) {
+          setReviewCount(count);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getCount();
+  }, [product._id]);
+  
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    console.log(rating);
+    console.log(comment);
+    console.log(product._id);
+    setId(product._id);
+    try {
+      const { data } = await axios.post("/api/v1/products/review", {
+        rating,
+        comment,
+        id: product._id,
+      });
+
+      if (data?.success) {
+        toast.error(data?.message);
+      } else {
+        toast.success("Product Created Successfully");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
   return (
     <Layout>
       <div className="row container product-details">
@@ -62,6 +116,20 @@ const ProductDetails = () => {
             })}
           </h6>
           <h6>Category : {product?.category?.name}</h6>
+          <div className="ratings mt-auto">
+          <ProductReviews productId={product._id}></ProductReviews>
+            <span> ({reviewCount} reviews)</span>
+          </div>
+          <button
+            style={{ "margin-bottom": "20px", background: "#fdcc0d" }}
+            className="btn btn-secondary ms-1"
+            onClick={() => {
+              setShow(!show);
+            }}
+          >
+            Give a Review
+          </button>
+          {show && <ReviewForm productId={product._id} />}
           <button class="btn btn-secondary ms-1">ADD TO CART</button>
         </div>
       </div>

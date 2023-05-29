@@ -10,6 +10,7 @@ import { Avatar, Badge } from "antd";
 import useCategory from "../../hooks/useCategory";
 //import { useWishlist } from "../../context/wishlist";
 
+
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();

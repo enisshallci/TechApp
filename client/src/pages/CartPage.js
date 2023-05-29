@@ -3,6 +3,8 @@ import Layout from "./../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
+import DropIn from "braintree-web-drop-in-react";
+
 import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -44,6 +46,40 @@ const CartPage = () => {
     }
   };
 
+
+  //get payment gateway token
+  const getToken = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/products/braintree/token");
+      setClientToken(data?.clientToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getToken();
+  }, [auth?.token]);
+
+  //handle payments
+  const handlePayment = async () => {
+    try {
+      setLoading(true);
+      const { nonce } = await instance.requestPaymentMethod();
+      const { data } = await axios.post("/api/v1/products/braintree/payment", {
+        nonce,
+        cart,
+      });
+      setLoading(false);
+      localStorage.removeItem("cart");
+      setCart([]);
+      navigate("/dashboard/user/orders");
+      toast.success("Payment Completed Successfully ");
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   return (
     <Layout>
       <div className=" cart-page">
@@ -71,7 +107,9 @@ const CartPage = () => {
                   <div className="col-md-4">
                     <img
                       src={`/api/v1/products/product-photo/${p._id}`}
+                      className="card-img-top cart-image"
                       className="card-img-top"
+
                       alt={p.name}
                       width="100%"
                       height={"130px"}
@@ -80,6 +118,8 @@ const CartPage = () => {
                   <div className="col-md-4">
                     <p>{p.name}</p>
                     <p>{p.description.substring(0, 30)}</p>
+
+                    <p>Price : ${p.price}</p>
                     <p>Price : {p.price}</p>
                   </div>
                   <div className="col-md-4 cart-remove-btn">
@@ -139,6 +179,7 @@ const CartPage = () => {
                   ""
                 ) : (
                   <>
+                    <DropIn
                     {/*<DropIn
                       options={{
                         authorization: clientToken,
@@ -147,6 +188,11 @@ const CartPage = () => {
                         },
                       }}
                       onInstance={(instance) => setInstance(instance)}
+                    />
+
+                    <button
+                      className="btn btn-primary"
+                      onClick={handlePayment}
                     />*/}
 
                     <button

@@ -3,6 +3,7 @@ import Layout from "../components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import "../style/CategoryProductStyles.css";
 import axios from "axios";
+import SupportEngine from "./SupportEngine";
 const CategoryProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
@@ -93,6 +94,7 @@ const CategoryProduct = () => {
           </div>
         </div>
       </div>
+      <SupportEngine/>
     </Layout>
   );
 };

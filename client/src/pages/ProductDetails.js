@@ -6,6 +6,7 @@ import "../style/ProductDetailsStyles.css";
 import toast from "react-hot-toast";
 import ReviewForm from "./ReviewForm.js";
 import ProductReviews from "./Admin/ProductReviews";
+import SupportEngine from "./SupportEngine";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -173,6 +174,7 @@ const ProductDetails = () => {
           ))}
         </div>
       </div>
+      <SupportEngine/>
     </Layout>
   );
 };

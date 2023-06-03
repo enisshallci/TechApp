@@ -13,6 +13,7 @@ import { useAuth } from "../context/auth";
 import "@fortawesome/fontawesome-free/css/all.css";
 import wishlistImg from "../components/content/love.png";
 import ProductReviews from "./Admin/ProductReviews";
+import SupportEngine from "./SupportEngine";
 
 
 const HomePage = () => {
@@ -275,6 +276,7 @@ const HomePage = () => {
             )}
           </div>
         </div>
+        <SupportEngine/>
       </div>
     </Layout>
   );

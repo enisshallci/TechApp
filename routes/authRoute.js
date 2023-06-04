@@ -7,6 +7,7 @@ import {
   updateProfileController,
   getOrdersController,
   getAllOrdersController,
+  deleteOrderController,
   orderStatusController,
   deleteUserController,
   getAllUsers
@@ -825,8 +826,13 @@ router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
  */
 
 
+// delete order
+router.delete('/delete-order/:orderId/:pid', deleteOrderController);
+
+
 // delete user
 router.delete('/delete-user/:userId', deleteUserController);
+
 
 // order status update
 router.put(

@@ -19,6 +19,8 @@ const AdminOrders = () => {
   const [changeStatus, setCHangeStatus] = useState("");
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
+  const [delorders, setDelOrders] = useState([]);
+
   const getOrders = async () => {
     try {
       const { data } = await axios.get("/api/v1/auth/all-orders");
@@ -40,6 +42,25 @@ const AdminOrders = () => {
       getOrders();
     } catch (error) {
       console.log(error);
+    }
+  };
+  const handleDelete = async (orderId, productId) => {
+    try {
+      const { data } = await axios.delete(`/api/v1/auth/delete-order/${orderId}/${productId}`);
+      toast.success("Product Deleted Successfully");
+
+      setDelOrders((prevOrders) => {
+        const updatedOrders = prevOrders.map((order) => {
+          if (order._id === orderId) {
+            delorders.products = delorders.products.filter((product) => product._id !== productId);
+          }
+          return delorders;
+        });
+        return updatedOrders;
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
     }
   };
   return (
@@ -103,6 +124,7 @@ const AdminOrders = () => {
                         <p>{p.name}</p>
                         <p>{p.description.substring(0, 30)}</p>
                         <p>Price : {p.price}</p>
+                        <button className="btn btn-danger" onClick={()=>handleDelete(o._id,p._id)}>Delete Order</button>
                       </div>
                     </div>
                   ))}

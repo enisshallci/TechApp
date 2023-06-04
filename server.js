@@ -6,9 +6,43 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
-import wishlistRoutes from './routes/wishlistRoutes.js'
+import wishlistRoutes from "./routes/wishlistRoutes.js";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 
+const app = express();
+
+// Swagger setup
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Swagger Documentation for TechApp ",
+      version: "1.0.0",
+      description: "Description of your API",
+    },
+    servers: [
+      {
+        url: "http://localhost:8080",
+      },
+    ],
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+      security: [{ BearerAuth: [] }],
+    },
+  },
+  apis: ["./routes/*.js"],
+};
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 //configure env
 dotenv.config();
@@ -17,7 +51,7 @@ dotenv.config();
 connectDB();
 
 //rest object
-const app = express();
+//const app = express();
 
 //middlewares
 app.use(cors());
@@ -28,7 +62,7 @@ app.use(morgan("dev"));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/products", productRoutes);
-app.use('/api/v1/wishlist', wishlistRoutes);
+app.use("/api/v1/wishlist", wishlistRoutes);
 
 //rest api
 app.get("/", (req, res) => {

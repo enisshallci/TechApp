@@ -7,10 +7,8 @@ import {
   updateProfileController,
   getOrdersController,
   getAllOrdersController,
-  deleteOrderController,
   orderStatusController,
   deleteUserController,
-  getAllUsers
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -825,15 +823,6 @@ router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
  *   - BearerAuth: []
  */
 
-
-// delete order
-router.delete('/delete-order/:orderId/:pid', deleteOrderController);
-
-
-// delete user
-router.delete('/delete-user/:userId', deleteUserController);
-
-
 // order status update
 router.put(
   "/order-status/:orderId",
@@ -841,6 +830,122 @@ router.put(
   isAdmin,
   orderStatusController
 );
-router.get('/get-users', getAllUsers)
+/**
+ * @swagger
+ * /api/v1/auth/delete-order/{orderId}/{pid}:
+ *   delete:
+ *     summary: Delete a product from an order
+ *     description: Deletes a product from an order in the database.
+ *     tags:
+ *       - Auth
+ *     parameters:
+ *       - in: path
+ *         name: orderId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the order to delete the product from.
+ *       - in: path
+ *         name: pid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the product to delete from the order.
+ *     responses:
+ *       '200':
+ *         description: Product deleted successfully from the order.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates if the deletion was successful.
+ *                 message:
+ *                   type: string
+ *                   description: A success message.
+ *       '404':
+ *         description: Order not found.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates if the order was not found.
+ *                 message:
+ *                   type: string
+ *                   description: An error message indicating that the order was not found.
+ *       '500':
+ *         description: Error while deleting product.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates if there was an error while deleting the product.
+ *                 message:
+ *                   type: string
+ *                   description: An error message indicating that there was an error while deleting the product.
+ *                 error:
+ *                   type: object
+ *                   description: The error object containing additional details about the error.
+ */
+// delete order
+router.delete("/delete-order/:orderId/:pid", deleteOrderController);
+
+/**
+ * @swagger
+ * /api/v1/auth/delete-user/{userId}:
+ *   delete:
+ *     summary: Delete a user by ID
+ *     description: Deletes a user from the database based on the provided user ID.
+ *     tags:
+ *       - Auth
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         description: ID of the user to delete
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: User deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: User deleted successfully
+ *       '404':
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: User not found
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
+ */
+// delete user
+router.delete("/delete-user/:userId", deleteUserController);
 
 export default router;

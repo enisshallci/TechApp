@@ -7,7 +7,9 @@ import {
   updateProfileController,
   getOrdersController,
   getAllOrdersController,
+  deleteOrderController,
   orderStatusController,
+
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -821,6 +823,9 @@ router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
  * security:
  *   - BearerAuth: []
  */
+
+// delete order
+router.delete('/delete-order/:orderId/:pid', deleteOrderController);
 
 // order status update
 router.put(

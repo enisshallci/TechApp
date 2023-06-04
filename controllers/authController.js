@@ -252,3 +252,33 @@ export const orderStatusController = async (req, res) => {
   }
 };
 
+// Delete order => /api/v1/admin/order/:id
+export const deleteOrderController = async (req, res) => {
+  try {
+    const { orderId, pid } = req.params;
+    const order = await orderModel.findByIdAndUpdate(
+      orderId,
+      { $pull: { products: pid } },
+      { new: true }
+    );
+
+    if (!order) {
+      return res.status(404).send({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "Product deleted successfully from the order.",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while deleting product",
+      error,
+    });
+  }
+};

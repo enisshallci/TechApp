@@ -252,6 +252,7 @@ export const orderStatusController = async (req, res) => {
   }
 };
 
+
 // Delete order => /api/v1/admin/order/:id
 export const deleteOrderController = async (req, res) => {
   try {
@@ -280,5 +281,23 @@ export const deleteOrderController = async (req, res) => {
       message: "Error while deleting product",
       error,
     });
+
+// Delete user
+export const deleteUserController = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    // Find the user by ID and delete it
+    const deletedUser = await userModel.findByIdAndRemove(userId);
+
+    if (!deletedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
+
   }
 };

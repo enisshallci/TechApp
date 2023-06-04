@@ -9,7 +9,7 @@ import {
   getAllOrdersController,
   deleteOrderController,
   orderStatusController,
-
+  deleteUserController
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -824,8 +824,14 @@ router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
  *   - BearerAuth: []
  */
 
+
 // delete order
 router.delete('/delete-order/:orderId/:pid', deleteOrderController);
+
+
+// delete user
+router.delete('/delete-user/:userId', deleteUserController);
+
 
 // order status update
 router.put(

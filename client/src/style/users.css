@@ -1,0 +1,60 @@
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .user-card {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.3s ease;
+  }
+  
+  .user-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  
+  .user-email {
+    font-size: 14px;
+    color: #777777;
+  }
+  
+  .user-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .user-card:hover::before {
+    opacity: 1;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .users {
+      justify-content: flex-start;
+    }
+  
+    .user-card {
+      width: 100%;
+    }
+  }
+  

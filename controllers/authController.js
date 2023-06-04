@@ -252,3 +252,68 @@ export const orderStatusController = async (req, res) => {
   }
 };
 
+
+// Delete order => /api/v1/admin/order/:id
+export const deleteOrderController = async (req, res) => {
+  try {
+    const { orderId, pid } = req.params;
+    const order = await orderModel.findByIdAndUpdate(
+      orderId,
+      { $pull: { products: pid } },
+      { new: true }
+    );
+
+    if (!order) {
+      return res.status(404).send({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "Product deleted successfully from the order.",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while deleting product",
+      error,
+    });
+  }}
+
+// Delete user
+export const deleteUserController = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    // Find the user by ID and delete it
+    const deletedUser = await userModel.findByIdAndRemove(userId);
+
+    if (!deletedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
+
+  }
+};
+
+export const getAllUsers = async  (req, res)=>  {
+  try {
+    const users = await userModel.find();
+    res.status(200).send({
+      success: true,
+      counTotal: users.length,
+      message: "All users ",
+      users,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred while retrieving users.' });
+  }
+}

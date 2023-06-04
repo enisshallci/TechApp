@@ -8,10 +8,7 @@ import {
   getOrdersController,
   getAllOrdersController,
   orderStatusController,
-<<<<<<< Updated upstream
-=======
   deleteUserController,
->>>>>>> Stashed changes
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -825,10 +822,7 @@ router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
  * security:
  *   - BearerAuth: []
  */
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 // order status update
 router.put(
   "/order-status/:orderId",

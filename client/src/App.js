@@ -28,6 +28,7 @@ import AdminOrders from "./pages/Admin/AdminOrders";
 import Wishlist from "./pages/user/Wishlist";
 
 import SupportAdmin from "./pages/Admin/SupportAdmin";
+import AdminWishlist from './pages/Admin/AdminWishlist';
 
 function App() {
   return (
@@ -53,6 +54,8 @@ function App() {
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/orders" element={<AdminOrders />} />
+          <Route path="admin/wishlist" element={<AdminWishlist />} />
+
         <Route path="admin/chat" element={<SupportAdmin/>}></Route>
         </Route>
 

@@ -36,6 +36,19 @@ const AdminMenu = () => {
           >
             Chat
           </NavLink>
+          <NavLink
+            to="/dashboard/admin/wishlist"
+            className="list-group-item list-group-item-action"
+          >
+            Wishlist
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/admin/users"
+            className="list-group-item list-group-item-action"
+          >
+            Users
+          </NavLink>
         </div>
       </div>
     </>

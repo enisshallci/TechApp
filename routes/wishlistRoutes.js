@@ -3,6 +3,7 @@ import {
   createWishlistController,
   getUserWishlists,
   deleteProductFromWishlist,
+  getAllWishlists,
 } from "../controllers/wishlistController.js";
 import { requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -170,4 +171,5 @@ router.delete(
   deleteProductFromWishlist
 );
 
+router.get("/wishlist", getAllWishlists);
 export default router;

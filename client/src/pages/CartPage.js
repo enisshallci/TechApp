@@ -9,6 +9,7 @@ import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../style/CartStyles.css";
+import SupportEngine from "./SupportEngine";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -207,6 +208,7 @@ const CartPage = () => {
           </div>
         </div>
       </div>
+      <SupportEngine/>
     </Layout>
   );
 };

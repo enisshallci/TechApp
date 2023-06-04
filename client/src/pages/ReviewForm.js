@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import SupportEngine from "./SupportEngine";
 
 const ReviewForm = (props) => {
   const [products, setProducts] = useState([]);
@@ -76,6 +77,7 @@ const ReviewForm = (props) => {
           Submit Review
         </button>
       </form>
+      <SupportEngine/>
     </div>
   );
 };

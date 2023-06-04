@@ -24,7 +24,11 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
+
 import Wishlist from "./pages/user/Wishlist";
+
+import SupportAdmin from "./pages/Admin/SupportAdmin";
+
 function App() {
   return (
     <>
@@ -49,6 +53,7 @@ function App() {
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/orders" element={<AdminOrders />} />
+        <Route path="admin/chat" element={<SupportAdmin/>}></Route>
         </Route>
 
         <Route path="/register" element={<Register />} />

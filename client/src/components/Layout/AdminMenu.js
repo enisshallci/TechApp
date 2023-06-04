@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Wishlist from './../../pages/user/Wishlist';
 const AdminMenu = () => {
   return (
     <>
@@ -35,6 +36,12 @@ const AdminMenu = () => {
             className="list-group-item list-group-item-action"
           >
             Chat
+          </NavLink>
+          <NavLink
+            to="/dashboard/admin/wishlists"
+            className="list-group-item list-group-item-action"
+          >
+            Wishlist
           </NavLink>
         </div>
       </div>

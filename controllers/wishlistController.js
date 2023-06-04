@@ -46,13 +46,13 @@ export const deleteProductFromWishlist = async (req, res) => {
 };
 
 
-// // Get all wishlists
-// export const getAllWishlists =  async (req, res) => {
-//     try {
-//       const wishlists = await wishlistModel.find().populate('user products');
-//       res.json({ wishlists });
-//     } catch (error) {
-//       res.status(500).json({ error: 'Failed to fetch wishlists' });
-//     }
-//   };
+// Get all wishlists
+export const getAllWishlists =  async (req, res) => {
+    try {
+      const wishlists = await wishlistModel.find().populate('user products');
+      res.json({ wishlists });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch wishlists' });
+    }
+  };
   

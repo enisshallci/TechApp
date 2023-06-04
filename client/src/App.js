@@ -28,6 +28,10 @@ import AdminOrders from "./pages/Admin/AdminOrders";
 import Wishlist from "./pages/user/Wishlist";
 
 import SupportAdmin from "./pages/Admin/SupportAdmin";
+<<<<<<< Updated upstream
+=======
+import AdminWishlist from "./pages/Admin/AdminWishlist";
+>>>>>>> Stashed changes
 
 function App() {
   return (
@@ -54,6 +58,8 @@ function App() {
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/orders" element={<AdminOrders />} />
         <Route path="admin/chat" element={<SupportAdmin/>}></Route>
+        <Route path="admin/wishlists" element={<AdminWishlist/>}></Route>
+
         </Route>
 
         <Route path="/register" element={<Register />} />

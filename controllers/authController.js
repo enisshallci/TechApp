@@ -282,6 +282,7 @@ export const deleteOrderController = async (req, res) => {
       error,
     });
   }}
+
 // Delete user
 export const deleteUserController = async (req, res) => {
   try {

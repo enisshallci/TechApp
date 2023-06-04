@@ -270,3 +270,18 @@ export const deleteUserController = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+export const getAllUsers = async  (req, res)=>  {
+  try {
+    const users = await userModel.find();
+    res.status(200).send({
+      success: true,
+      counTotal: users.length,
+      message: "All users ",
+      users,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred while retrieving users.' });
+  }
+}

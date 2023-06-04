@@ -171,5 +171,5 @@ router.delete(
   deleteProductFromWishlist
 );
 
-router.get("/wishlist", getAllWishlists);
+router.get("/allwishlist", getAllWishlists);
 export default router;

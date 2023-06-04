@@ -281,6 +281,7 @@ export const deleteOrderController = async (req, res) => {
       message: "Error while deleting product",
       error,
     });
+  }}
 
 // Delete user
 export const deleteUserController = async (req, res) => {
